@@ -1,6 +1,4 @@
-# Quilt
-
-Quilt is the Linux distro.
+![quilt](https://socialify.git.ci/sakkke/quilt/image?description=1&descriptionEditable=The%20Linux%20distro&font=Bitter&name=1&pattern=Charlie%20Brown&stargazers=1&theme=Dark)
 
 ## Features
 
