@@ -4,8 +4,8 @@ Quilt is the Linux distro.
 
 ## Features
 
-- Automatically start [`tmux`](https://wiki.archlinux.org/title/Tmux) and [`ranger`](https://wiki.archlinux.org/title/Ranger) as of the virtual console
-- Almost pure [Arch Linux](https://archlinux.org/)
+- Automatically start [tmux] and [ranger] as of the virtual console
+- Almost pure [Arch Linux]
 - Easy installation, done in offline
 
 ## Dev env setup
@@ -25,9 +25,9 @@ Run `./build.sh` or the below enable logging:
 ## Install
 
 1. Launch the ISO env
-1. In `ranger` interface, press `Shift s` key combi to enter the shell
-1. If necessary, perform [partitioning](https://wiki.archlinux.org/title/Partitioning) using `cfdisk` or similar
-1. Run the below
+2. In `ranger` interface, press `Shift s` key combi to enter the shell
+3. If necessary, perform [partitioning] using `cfdisk` or similar
+4. Run the below
 
 ```bash
 tar -C /mnt -Ipixz -xf /rootfs.tpxz
@@ -45,3 +45,8 @@ Installation complete!
 ## License
 
 MIT
+
+[Arch Linux]: https://archlinux.org/
+[partitioning]: https://wiki.archlinux.org/title/Partitioning
+[ranger]: https://wiki.archlinux.org/title/Ranger
+[tmux]: https://wiki.archlinux.org/title/Tmux
