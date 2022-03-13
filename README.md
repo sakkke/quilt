@@ -6,6 +6,10 @@
 - Almost pure [Arch Linux]
 - Easy installation, done in offline
 
+## Download
+
+You can find downloadable files at [releases].
+
 ## Dev env setup
 
 ```bash
@@ -45,6 +49,7 @@ Installation complete!
 MIT
 
 [Arch Linux]: https://archlinux.org/
+[releases]: https://github.com/sakkke/quilt/releases
 [partitioning]: https://wiki.archlinux.org/title/Partitioning
 [ranger]: https://wiki.archlinux.org/title/Ranger
 [tmux]: https://wiki.archlinux.org/title/Tmux
