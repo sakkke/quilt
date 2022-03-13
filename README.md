@@ -6,6 +6,11 @@
 - Almost pure [Arch Linux]
 - Easy installation, done in offline
 
+## Screenshots
+
+![First boot](https://i.imgur.com/QL9zgYu.png)
+![Installation process](https://i.imgur.com/4bRBL1d.png)
+
 ## Download
 
 You can find downloadable files at [releases].
