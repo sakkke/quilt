@@ -11,7 +11,7 @@ This document is extracted `Install` section from [README.md].
 tar -C /mnt -Ipixz -xf /rootfs.tpxz
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt hwclock --systohc
-arch-chroot /mnt 'efi_dir=/boot && grub-install --efi-directory="$efi_dir" && grub-mkconfig -o "$efi_dir/grub/grub.cfg"'
+arch-chroot /mnt /bin/sh -c 'efi_dir=/boot && grub-install --efi-directory="$efi_dir" && grub-mkconfig -o "$efi_dir/grub/grub.cfg"'
 ```
 
 - `/mnt` expects the partition is mounted
