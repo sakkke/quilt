@@ -14,8 +14,10 @@
 
 ## Screenshots
 
-![First boot](https://i.imgur.com/QL9zgYu.png)
-![Installation process](https://i.imgur.com/4bRBL1d.png)
+<p align="center">
+  <img alt="First boot" src="https://i.imgur.com/QL9zgYu.png" width="200">
+  <img alt="Installation process" src="https://i.imgur.com/4bRBL1d.png" width="200">
+</p>
 
 ## Download
 
