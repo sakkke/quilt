@@ -1,5 +1,11 @@
 ![quilt](https://socialify.git.ci/sakkke/quilt/image?description=1&descriptionEditable=The%20Linux%20distro&font=Bitter&name=1&pattern=Charlie%20Brown&stargazers=1&theme=Dark)
 
+<p align="center">
+  <a href="https://discord.gg/pH9f6VyUbk">
+    <img src="https://img.shields.io/discord/952831486980153344?color=000&logo=discord&labelColor=000&logoColor=fff&style=for-the-badge">
+  </a>
+</p>
+
 ## Features
 
 - Automatically start [tmux] and [ranger] as of the virtual console
