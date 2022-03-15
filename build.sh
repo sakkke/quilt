@@ -34,8 +34,8 @@ done
 
 (
   cd build/rootfs \
-    && find -maxdepth 1 -mindepth 1 \
-      | tar -cT- \
+    && find -maxdepth 1 -mindepth 1 -print0 \
+      | tar --null -cT- \
       | pixz -9o ../airootfs/rootfs.tpxz
 )
 
