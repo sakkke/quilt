@@ -32,10 +32,12 @@ for profile in "${prod_profiles[@]}"; do
   cp -RTv configs/$profile/airootfs build/rootfs || :
 done
 
-cd build/rootfs
-find -maxdepth 1 -mindepth 1 \
-  | tar -cT- \
-  | pixz -9o ../airootfs/rootfs.tpxz
-cd ..
-du -h airootfs/rootfs.tpxz
-mkarchiso -v .
+(
+  cd build/rootfs \
+    && find -maxdepth 1 -mindepth 1 \
+      | tar -cT- \
+      | pixz -9o ../airootfs/rootfs.tpxz
+)
+
+du -h build/rootfs/airootfs/rootfs.tpxz
+(cd build && mkarchiso -v .)
