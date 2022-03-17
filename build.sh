@@ -2,9 +2,6 @@
 
 set -eux
 
-iso_profiles=(brand iso)
-prod_profiles=(prod brand)
-
 function get_packages {
   for profile in "$@"; do
     printf '%s\n' "configs/$profile/$profile.packages.x86_64"
@@ -12,6 +9,7 @@ function get_packages {
 }
 
 cd "$(dirname "$0")"
+source build.config.sh
 rm -frv build
 cp -Rv archiso/configs/baseline build
 mv -v build/{,baseline.}packages.x86_64
