@@ -20,9 +20,7 @@ done
 
 sort -o build/packages.x86_64 build/*.packages.x86_64
 mkdir -v build/rootfs
-
 sort $(get_packages "${prod_profiles[@]}") | pacstrap -c build/rootfs --noprogressbar -
-
 arch-chroot build/rootfs /bin/sh -c "sed -i 's/#\(en_US\.UTF-8\)/\1/' /etc/locale.gen && locale-gen"
 arch-chroot build/rootfs /bin/sh -c 'echo root:root | chpasswd'
 
