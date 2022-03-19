@@ -1,3 +1,4 @@
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine)
 ![quilt](https://socialify.git.ci/sakkke/quilt/image?description=1&descriptionEditable=The%20Linux%20distro&font=Bitter&name=1&pattern=Charlie%20Brown&stargazers=1&theme=Dark)
 
 <p align="center">
