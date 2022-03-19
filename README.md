@@ -26,7 +26,7 @@ You can find downloadable files at [releases].
 ## Dev env setup
 
 ```bash
-pacman --needed -S - < dev.packages.x86_64
+pacman --needed -Sy - < dev.packages.x86_64
 ```
 
 ## Build the ISO
