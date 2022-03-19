@@ -77,6 +77,24 @@ To run Quick Installer:
 5. Auto: Do [Manual install] section
 6. Installation complete!
 
+## Build the minirootfs
+
+The minirootfs is a gzipped tar file that does not include `linux` and `linux-firmware` packages.
+
+Run `./build-minirootfs.sh` or the below enable logging:
+
+```bash
+{ time ./build-minirootfs.sh; } 2>&1 | tee build-minirootfs.log
+```
+
+## Install to WSL 2
+
+In Windows:
+
+```
+wsl.exe --import path\to\minirootfs.tar.gz path\to\dir Quilt
+```
+
 ## License
 
 MIT
