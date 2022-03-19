@@ -1,0 +1,195 @@
+#!/usr/bin/env bash
+
+set -eu
+
+dev=/dev
+mnt=/mnt
+prog_name="$(basename "$0")"
+yes=
+
+function main {
+  set -- $(getopt -uod:hny -ldebug,disk:,dry-run,help,yes -- "$@")
+
+  if [[ $? -ne 0 ]]; then
+    get_help
+  fi
+
+  while [[ $1 != -- ]]; do
+    case "$1" in
+      --debug )
+        debug=1
+        ;;
+
+      --disk | -d )
+        disk="$2"
+        shift
+
+        if ! grep -q "$disk" <(get_disks); then
+          error_msg 3 'Invalid the disk: %s' "$disk"
+        fi
+        ;;
+
+      --dry-run | -n )
+        dry='echo -e \e[1;7;34mDry:\e[m'
+        ;;
+
+      --help | -h )
+        get_help
+        return
+        ;;
+
+      --yes | -y )
+        yes=1
+        ;;
+    esac
+
+    shift
+  done
+
+  shift
+  efi="$dev/${disk}1"
+  dry="${dry:-}"
+  linux="$dev/${disk}2"
+
+  if [[ -z ${disk:-} ]]; then
+    _PS3="${PS3:-}"
+    PS3="$(prompt_msg 'select the disk %s' "${PS3:-#? }")"
+
+    select disk in $(get_disks); do
+      if [[ -n $disk ]]; then
+        break
+      else
+        info_msg 'non-existent index: %s' "$REPLY"
+      fi
+    done
+
+    PS3="$_PS3"
+  else
+    debug_msg 'skipped partitioning'
+  fi
+
+  info_msg "selected the disk: %s" "$disk"
+  yes_prompt
+  partitioning "$disk"
+  $dry mount "$linux" "$mnt"
+  $dry mkdir -v "$mnt/boot"
+  $dry mount "$efi" "$mnt/boot"
+  install_quilt
+  $dry umount -R "$mnt"
+  info_msg 'installation complete!'
+}
+
+function debug_msg {
+  if [[ -z ${debug:-} ]]; then
+    return
+  fi
+
+  printf '\e[1;7;33mDebug:\e[m '
+  printf "$@"
+  printf '\n'
+}
+
+function error_msg {
+  status="$1"
+
+  shift
+  printf '\e[1;31mError:\e[m '
+  printf "$@"
+  printf '\n'
+  exit "$status"
+}
+
+function info_msg {
+  printf '\e[1;36mInfo:\e[m '
+  printf "$@"
+  printf '\n'
+}
+
+function prompt_msg {
+  printf '\e[1;35mPrompt:\e[m '
+  printf "$@"
+  printf '\n'
+}
+
+function warn_msg {
+  printf '\e[1;33mWarn:\e[m '
+  printf "$@"
+  printf '\n'
+}
+
+function get_disks {
+  (
+    cd "$dev" \
+      && find -maxdepth 1 -mindepth 1 -printf '%P\0' \
+      | while IFS= read -rd $'\0' path; do
+          grep -E '^([sv]d[a-z]+|(mmcblk|nvme)[0-9]+)$' <<< "$path"
+        done
+  )
+}
+
+function get_help {
+  cat << /cat
+
+Usage:
+ $prog_name [options]
+
+Quick Installer for Quilt.
+
+Options:
+ --debug                    set debug flag to true
+ -d, --disk <path_to_disk>  the path to disk on which you want to install Quilt
+ -n, --dry-run              perform a trial run with no changes made
+ -y, --yes                  automatic yes to prompts
+
+ -h, --help                 display this help
+/cat
+}
+
+function install_quilt {
+  $dry tar -C "$mnt" -Ipixz -xf /rootfs.tpxz
+  $dry genfstab -U "$mnt" \
+    | $dry tee -a "$mnt/etc/fstab" \
+    | :
+  $dry arch-chroot "$mnt" hwclock --systohc
+  $dry arch-chroot "$mnt" /bin/sh -c 'efi_dir=/boot && grub-install --efi-directory="$efi_dir" && grub-mkconfig -o "$efi_dir/grub/grub.cfg"'
+}
+
+function partitioning {
+  disk="$1"
+  efi="$dev/${disk}1"
+  linux="$dev/${disk}2"
+
+  $dry sfdisk "$dev/$disk" << /sfdisk
+label: gpt
+
+size=300MiB, type=U
+type=L
+/sfdisk
+  $dry mkfs.fat -F32 "$efi"
+  $dry mkfs.ext4 -F "$linux"
+}
+
+function yes_prompt {
+  if [[ $yes -eq 1 ]]; then
+    return
+  fi
+
+  while read -p"$(prompt_msg "type 'yes' to continue... ")" input; do
+    case "$input" in
+      '' )
+        debug_msg 'the input expected to be not a newline'
+        ;;
+
+      yes )
+        debug_msg "typed 'yes'"
+        break
+        ;;
+
+      * )
+        error_msg 3 'aborted!'
+        ;;
+    esac
+  done
+}
+
+main "$@"

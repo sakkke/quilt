@@ -37,7 +37,7 @@ Run `./build.sh` or the below enable logging:
 { time ./build.sh; } 2>&1 | tee build.log
 ```
 
-## Install
+## Manual Install
 
 1. Launch the ISO env
 2. In `ranger` interface, press `Shift s` key combi to enter the shell
@@ -57,11 +57,32 @@ arch-chroot /mnt /bin/sh -c 'efi_dir=/boot && grub-install --efi-directory="$efi
 Finally, run `reboot`.
 Installation complete!
 
+## Quick Installer
+
+**Warning!**: Quick Installer will remove all your selected disk data!
+Recommend you back up your files first.
+
+To run Quick Installer:
+
+```bash
+/root/.quick-installer
+```
+
+### Quick Installer overview
+
+1. Select the disk on which you want to install Quilt
+2. Type `yes` to confirm
+3. Auto: Create the GPT to your selected disk
+4. Auto: Make it partition Linux filesystem and EFI system
+5. Auto: Do [Manual install] section
+6. Installation complete!
+
 ## License
 
 MIT
 
 [Arch Linux]: https://archlinux.org/
+[Manual install]: #manual-install
 [releases]: https://github.com/sakkke/quilt/releases
 [partitioning]: https://wiki.archlinux.org/title/Partitioning
 [ranger]: https://wiki.archlinux.org/title/Ranger
