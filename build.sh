@@ -35,5 +35,5 @@ done
     | pixz -9o ../airootfs/rootfs.tpxz
 )
 
-du -h build/rootfs/airootfs/rootfs.tpxz
+du -h build/airootfs/rootfs.tpxz
 (cd build && mkarchiso -v .)
