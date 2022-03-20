@@ -25,3 +25,5 @@ done
     | tar --null -cT- \
     | pigz -9 > ../minirootfs.tar.gz
 )
+
+du -h build/minirootfs.tar.gz
