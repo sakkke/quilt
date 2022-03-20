@@ -15,5 +15,5 @@ airootfs_image_type="erofs"
 airootfs_image_tool_options=('-zlz4hc,12')
 file_permissions=(
   ["/etc/shadow"]="0:0:400"
-  ["/root/.quick-install"]="0:0:755"
+  ["/root/.quick-installer"]="0:0:755"
 )
