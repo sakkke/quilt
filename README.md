@@ -27,7 +27,7 @@ You can find downloadable files at [releases].
 ## Dev env setup
 
 ```bash
-pacman --needed -Sy - < dev.packages.x86_64
+sudo pacman --needed -Sy - < dev.packages.x86_64
 ```
 
 ## Build the ISO
@@ -35,7 +35,7 @@ pacman --needed -Sy - < dev.packages.x86_64
 Run `./build.sh` or the below enable logging:
 
 ```bash
-{ time ./build.sh; } 2>&1 | tee build.log
+{ time sudo ./build.sh; } 2>&1 | tee build.log
 ```
 
 ## Manual Install
