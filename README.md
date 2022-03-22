@@ -21,6 +21,15 @@
   <img alt="Installation process" src="https://i.imgur.com/4bRBL1d.png" width="200">
 </p>
 
+## Platforms
+
+Arch | Name | State
+--- | --- | ---
+x86_64 | EFI | Alpha
+x86_64 | Docker | Coming soon
+x86_64 | Shells | Coming soon
+x86_64 | WSL 2 | Alpha
+
 ## Download
 
 You can find downloadable files at [releases].
