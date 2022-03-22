@@ -5,6 +5,7 @@
   <a href="https://discord.gg/pH9f6VyUbk">
     <img src="https://img.shields.io/discord/952831486980153344?color=000&logo=discord&labelColor=000&logoColor=fff&style=for-the-badge">
   </a>
+  <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-000?logo=buymeacoffee&logoColor=fff&style=for-the-badge">
 </p>
 
 ## Features
