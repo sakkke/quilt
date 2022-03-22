@@ -38,6 +38,15 @@ Run `./build.sh` or the below enable logging:
 { time sudo ./build.sh; } 2>&1 | tee build.log
 ```
 
+## Create bootable device
+
+```bash
+echo label: gpt | sudo sfdisk --wipe always path/to/device
+sudo dd bs=100M if=path/to/iso of=path/to/device status=progress
+```
+
+- `path/to/device` is a device file (e.g. `/dev/sda`)
+
 ## Manual Install
 
 1. Launch the ISO env
