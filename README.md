@@ -115,6 +115,13 @@ In Windows:
 wsl.exe --import path\to\minirootfs.tar.gz path\to\dir Quilt
 ```
 
+## Build the Shells image
+
+```bash
+sudo pacman --needed -Sy - < build-shells.packages.x86_64
+sudo ./build-shells.sh
+```
+
 ## License
 
 MIT
