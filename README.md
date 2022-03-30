@@ -34,6 +34,13 @@ x86_64 | WSL 2 | Alpha
 
 You can find downloadable files at [releases].
 
+## Build all
+
+```bash
+sort -u build*.packages.x86_64 | sudo pacman --needed -Sy -
+sudo ./build-all.sh
+```
+
 ## Dev env setup
 
 ```bash
