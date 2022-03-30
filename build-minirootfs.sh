@@ -10,7 +10,7 @@ function get_packages {
 
 cd "$(dirname "$0")"
 source build.config.sh
-rm -frv build/minirootfs
+rm -frv build/minirootfs{,.tar.gz}
 mkdir -pv build/minirootfs
 sort $(get_packages "${miniprod_profiles[@]}") | pacstrap -c build/minirootfs --noprogressbar -
 arch-chroot build/minirootfs /bin/sh -c "sed -i 's/#\(en_US\.UTF-8\)/\1/' /etc/locale.gen && locale-gen"
