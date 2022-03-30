@@ -111,7 +111,7 @@ The minirootfs is a gzipped tar file that does not include `linux` and `linux-fi
 Run `./build-minirootfs.sh` or the below enable logging:
 
 ```bash
-{ time ./build-minirootfs.sh; } 2>&1 | tee build-minirootfs.log
+{ time sudo ./build-minirootfs.sh; } 2>&1 | tee build-minirootfs.log
 ```
 
 ## Install to WSL 2
