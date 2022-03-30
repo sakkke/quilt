@@ -34,34 +34,53 @@ x86_64 | WSL 2 | Alpha
 
 You can find downloadable files at [releases].
 
-## Build all
+## Build
+
+1. Clone this repo with `--recursive` option
+2. Enter cloned dir
+
+```bash
+git clone --recursive https://github.com/sakkke/quilt.git
+cd quilt
+```
+
+### Build all
 
 ```bash
 sort -u build*.packages.x86_64 | sudo pacman --needed -Sy -
 sudo ./build-all.sh
 ```
 
-## Build the ISO
+### Build the ISO
 
 ```bash
 sudo pacman --needed -Sy - < build.packages.x86_64
 sudo ./build.sh
 ```
 
-## Create bootable device
+### Build the minirootfs
 
 ```bash
-echo label: gpt | sudo sfdisk --wipe always path/to/device
-sudo dd bs=100M if=path/to/iso of=path/to/device status=progress
+sudo pacman --needed -Sy - < build-minirootfs.packages.x86_64
+sudo ./build-minirootfs.sh
 ```
 
-- `path/to/device` is a device file (e.g. `/dev/sda`)
+### Build the Shells image
 
-## Manual Install
+```bash
+sudo pacman --needed -Sy - < build-shells.packages.x86_64
+./build-shells.sh
+```
+
+## Install
+
+### Manual Install to EFI system
+
+First, prepare Quilt bootable device, referring to [Example to create bootable device].
 
 1. Launch the ISO env
 2. In `ranger` interface, press `Shift s` key combi to enter the shell
-3. If necessary, perform [partitioning] using `cfdisk` or similar
+3. If necessary, perform [partitioning] using `cfdisk` or similar, referring to [Partitioning Example]
 4. Run the below
 
 ```bash
@@ -77,7 +96,7 @@ arch-chroot /mnt /bin/sh -c 'efi_dir=/boot && grub-install --efi-directory="$efi
 Finally, run `reboot`.
 Installation complete!
 
-## Quick Installer
+### Quick Installer for EFI system
 
 **Warning!**: Quick Installer will remove all your selected disk data!
 Recommend you back up your files first.
@@ -88,7 +107,7 @@ To run Quick Installer:
 /root/.quick-installer
 ```
 
-### Quick Installer overview
+#### Quick Installer for EFI system overview
 
 1. Select the disk on which you want to install Quilt
 2. Type `yes` to confirm
@@ -97,14 +116,7 @@ To run Quick Installer:
 5. Auto: Do [Manual install] section
 6. Installation complete!
 
-## Build the minirootfs
-
-```bash
-sudo pacman --needed -Sy - < build-minirootfs.packages.x86_64
-sudo ./build-minirootfs.sh
-```
-
-## Install to WSL 2
+### Install to WSL 2
 
 In Windows:
 
@@ -112,19 +124,38 @@ In Windows:
 wsl.exe --import path\to\minirootfs.tar.gz path\to\dir Quilt
 ```
 
-## Build the Shells image
+## Misc
+
+### Example to create bootable device
 
 ```bash
-sudo pacman --needed -Sy - < build-shells.packages.x86_64
-sudo ./build-shells.sh
+echo label: gpt | sudo sfdisk --wipe always path/to/device
+sudo dd bs=100M if=path/to/iso of=path/to/device status=progress
 ```
+
+- `path/to/device` is a device file (e.g. `/dev/sda`)
+
+### Partitioning Example
+
+```bash
+sfdisk path/to/device << /sfdisk
+label: gpt
+
+size=300MiB, type=U
+type=L
+/sfdisk
+```
+
+- `path/to/device` is a device file (e.g. `/dev/sda`)
 
 ## License
 
 MIT
 
 [Arch Linux]: https://archlinux.org/
+[Example to create bootable device]: #example-to-create-bootable-device
 [Manual install]: #manual-install
+[Partitioning Example]: #partitioning-example
 [releases]: https://github.com/sakkke/quilt/releases
 [partitioning]: https://wiki.archlinux.org/title/Partitioning
 [ranger]: https://wiki.archlinux.org/title/Ranger
