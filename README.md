@@ -41,18 +41,11 @@ sort -u build*.packages.x86_64 | sudo pacman --needed -Sy -
 sudo ./build-all.sh
 ```
 
-## Dev env setup
+## Build the ISO
 
 ```bash
 sudo pacman --needed -Sy - < build.packages.x86_64
-```
-
-## Build the ISO
-
-Run `./build.sh` or the below enable logging:
-
-```bash
-{ time sudo ./build.sh; } 2>&1 | tee build.log
+sudo ./build.sh
 ```
 
 ## Create bootable device
@@ -106,12 +99,9 @@ To run Quick Installer:
 
 ## Build the minirootfs
 
-The minirootfs is a gzipped tar file that does not include `linux` and `linux-firmware` packages.
-
-Run `./build-minirootfs.sh` or the below enable logging:
-
 ```bash
-{ time sudo ./build-minirootfs.sh; } 2>&1 | tee build-minirootfs.log
+sudo pacman --needed -Sy - < build-minirootfs.packages.x86_64
+sudo ./build-minirootfs.sh
 ```
 
 ## Install to WSL 2
