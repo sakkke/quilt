@@ -25,7 +25,7 @@
 
 Arch | Name | State
 --- | --- | ---
-x86_64 | EFI | Alpha
+x86_64 | EFI system | Alpha
 x86_64 | Docker | Coming soon
 x86_64 | Shells | Coming soon
 x86_64 | WSL 2 | Alpha
