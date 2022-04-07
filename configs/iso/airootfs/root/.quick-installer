@@ -47,9 +47,7 @@ function main {
   done
 
   shift
-  efi="$dev/${disk}1"
   dry="${dry:-}"
-  linux="$dev/${disk}2"
 
   if [[ -z ${disk:-} ]]; then
     _PS3="${PS3:-}"
@@ -68,6 +66,8 @@ function main {
     debug_msg 'skipped partitioning'
   fi
 
+  efi="$dev/${disk}1"
+  linux="$dev/${disk}2"
   info_msg "selected the disk: %s" "$disk"
   yes_prompt
   partitioning "$disk"
