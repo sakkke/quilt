@@ -113,7 +113,7 @@ To run Quick Installer:
 2. Type `yes` to confirm
 3. Auto: Create the GPT to your selected disk
 4. Auto: Make it partition Linux filesystem and EFI system
-5. Auto: Do [Manual install] section
+5. Auto: Do [Manual Install to EFI system] section
 6. Installation complete!
 
 ### Install to WSL 2
@@ -154,7 +154,7 @@ MIT
 
 [Arch Linux]: https://archlinux.org/
 [Example to create bootable device]: #example-to-create-bootable-device
-[Manual install]: #manual-install
+[Manual Install to EFI system]: #manual-install-to-efi-system
 [Partitioning Example]: #partitioning-example
 [releases]: https://github.com/sakkke/quilt/releases
 [partitioning]: https://wiki.archlinux.org/title/Partitioning
