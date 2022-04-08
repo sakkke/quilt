@@ -26,6 +26,26 @@ arch-chroot /mnt /bin/sh -c 'efi_dir=/boot && grub-install --efi-directory="$efi
 Finally, run `reboot`.
 Installation complete!
 
+### Quick Installer for EFI system
+
+**Warning!**: Quick Installer will remove all your selected disk data!
+Recommend you back up your files first.
+
+To run Quick Installer:
+
+```bash
+/root/.quick-installer
+```
+
+#### Quick Installer for EFI system overview
+
+1. Select the disk on which you want to install Quilt
+2. Type `yes` to confirm
+3. Auto: Create the GPT to your selected disk
+4. Auto: Make it partition Linux filesystem and EFI system
+5. Auto: Do [Manual install] section
+6. Installation complete!
+
 ## Misc
 
 ### Example to create bootable device
